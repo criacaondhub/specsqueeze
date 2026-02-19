@@ -1,5 +1,4 @@
-# Regras de Desenvolvimento - Oratória de Elite
-
+# Regras de Desenvolvimento - Spec Squeeze
 Este documento define os padrões técnicos e de infraestrutura para este projeto. Siga estas diretrizes em cada interação.
 
 ---
@@ -37,8 +36,8 @@ O projeto é servido via Docker na VPS. Mantenha os seguintes padrões:
 ---
 
 ## 🎯 5. Regras de Negócio Padrão
-*   **CTAs**: Botões de seções de meio de página geralmente levam à âncora de preço (`#preco`).
-*   **Checkout**: O botão dentro do card de preço deve levar ao link de Checkout externo: `[LINK_AQUI]`.
+*   **CTAs**: Botões de seções de meio de página devem levar ao formulário de orçamento (`#orcamento`).
+*   **Formulário**: Quando a pessoa terminar de preencher o formulário, o botão de enviar deve direcionar as respostas para o email da Spec Squeeze: `contato@specsqueeze.com.br`.
 *   **Mobile-First**: A prioridade de validação e refinamento é sempre a experiência mobile.
 
 ---
@@ -47,7 +46,3 @@ O projeto é servido via Docker na VPS. Mantenha os seguintes padrões:
 Vamos construir uma landing page do nosso cliente chamado Spec Squeeze, essa landing page tem o intuito de ser de alta conversão voltada para o público B2B, então vamos usar técnicas avançadas e consolidadas de UX/UI nos componentes da página.
 
 Vamos usar o MCP do Shadcn para criação dos componentes e elementos em toda a landing page.
-
-Em certo momento da página vamos trabalhar com uma técnica chamada Scrollytelling, nesse momento eu precisarei de atenção máxima da parte do agente na execução e como proceder da maneira correta.
-
-Quero que os commits levem tudo deste ambiente (exatamente tudo) para o Git de origem.
