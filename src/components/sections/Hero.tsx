@@ -11,7 +11,7 @@ export const Hero = () => {
     ]
 
     return (
-        <section id="hero" className="relative min-h-screen w-full flex flex-col items-center justify-start overflow-hidden pt-6 pb-20">
+        <section id="hero" className="relative min-h-screen w-full flex flex-col items-center justify-start overflow-hidden pt-6 pb-[80px]">
 
             {/* BACKGROUND IMAGE */}
             <div className="absolute inset-0 w-full h-full z-0">

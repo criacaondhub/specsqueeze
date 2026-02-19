@@ -1,10 +1,12 @@
 import { Hero } from "@/components/sections/Hero"
+import { TargetAudience } from "@/components/sections/TargetAudience"
 
 function App() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans antialiased">
       <main>
         <Hero />
+        <TargetAudience />
         {/* Outras dobras serão adicionadas aqui */}
       </main>
 
