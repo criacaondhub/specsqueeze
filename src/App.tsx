@@ -1,19 +1,31 @@
 import { Hero } from "@/components/sections/Hero"
 import { TargetAudience } from "@/components/sections/TargetAudience"
+import { SqueezeDivider } from "@/components/ui/SqueezeDivider"
+import { ProductLines } from "@/components/sections/ProductLines"
+import { Differentials } from "@/components/sections/Differentials"
+import { Capacity } from "@/components/sections/Capacity"
+import { OtherLines } from "@/components/sections/OtherLines"
+import { ContactForm } from "@/components/sections/ContactForm"
+import { FAQ } from "@/components/sections/FAQ"
+import { Footer } from "@/components/sections/Footer"
+import { ParallaxBackground } from "@/components/layout/ParallaxBackground"
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans antialiased">
-      <main>
+    <div className="min-h-screen bg-transparent text-foreground font-sans antialiased overflow-x-hidden">
+      <ParallaxBackground />
+      <main className="relative z-10">
         <Hero />
+        <SqueezeDivider />
         <TargetAudience />
-        {/* Outras dobras serão adicionadas aqui */}
+        <ProductLines />
+        <Differentials />
+        <Capacity />
+        <OtherLines />
+        <ContactForm />
+        <FAQ />
+        <Footer />
       </main>
-
-      {/* Footer simples por enquanto */}
-      <footer className="py-8 text-center text-foreground/20 text-xs border-t border-white/5">
-        &copy; {new Date().getFullYear()} Spec Squeeze. Todos os direitos reservados.
-      </footer>
     </div>
   )
 }

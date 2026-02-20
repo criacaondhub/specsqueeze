@@ -13,14 +13,13 @@ export const Hero = () => {
     return (
         <section id="hero" className="relative min-h-screen w-full flex flex-col items-center justify-start overflow-hidden pt-6 pb-[80px]">
 
-            {/* BACKGROUND IMAGE */}
-            <div className="absolute inset-0 w-full h-full z-0">
+            {/* HERO BACKGROUND OVERLAY */}
+            <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
                 <img
-                    src="assets/background.webp"
-                    alt="Background"
-                    className="w-full h-full object-cover"
+                    src="assets/bg-hero-overlay.webp"
+                    alt=""
+                    className="w-full h-full object-cover mix-blend-overlay opacity-10"
                 />
-                <div className="absolute inset-0 bg-background/40 pointer-events-none" />
             </div>
 
             {/* HEADER ROW (Logo, Badges, Mini CTA) */}
