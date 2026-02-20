@@ -1,6 +1,6 @@
 import { Hero } from "@/components/sections/Hero"
+import { BrandCarousel } from "@/components/sections/BrandCarousel"
 import { TargetAudience } from "@/components/sections/TargetAudience"
-import { SqueezeDivider } from "@/components/ui/SqueezeDivider"
 import { ProductLines } from "@/components/sections/ProductLines"
 import { Differentials } from "@/components/sections/Differentials"
 import { Capacity } from "@/components/sections/Capacity"
@@ -16,7 +16,7 @@ function App() {
       <ParallaxBackground />
       <main className="relative z-10">
         <Hero />
-        <SqueezeDivider />
+        <BrandCarousel />
         <TargetAudience />
         <ProductLines />
         <Differentials />
