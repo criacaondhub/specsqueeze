@@ -16,19 +16,34 @@ const CapacityBlock = ({ image, title, index }: CapacityBlockProps) => {
         <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
+            whileHover="hover"
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="flex flex-col space-y-4 md:space-y-6 group text-center"
+            className="flex flex-col space-y-4 md:space-y-6 text-center cursor-pointer"
         >
             {/* IMAGE CONTAINER */}
-            <div className="relative h-[220px] md:h-auto md:aspect-[4/3] w-full bg-white/5 rounded-2xl overflow-hidden border border-white/10 group-hover:border-primary-accent/40 transition-all duration-500 shadow-2xl">
-                <img
+            <motion.div
+                variants={{
+                    hover: { borderColor: "rgba(59, 158, 255, 0.8)" }
+                }}
+                className="relative h-[220px] md:h-auto md:aspect-[4/3] w-full bg-white/5 rounded-2xl overflow-hidden border border-white/10 transition-all duration-500 shadow-2xl"
+            >
+                <motion.img
+                    variants={{
+                        hover: { filter: "grayscale(0%)", scale: 1.15 }
+                    }}
+                    initial={{ filter: "grayscale(100%)" }}
                     src={image}
                     alt={title.replace(/\*/g, '').replace(/\|/g, '')}
-                    className="absolute inset-0 w-full h-full object-cover md:grayscale md:group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500" />
-            </div>
+                <motion.div
+                    variants={{
+                        hover: { opacity: 0.1 }
+                    }}
+                    className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-80 transition-opacity duration-500"
+                />
+            </motion.div>
 
             {/* TEXT CONTENT */}
             <div className="px-2">

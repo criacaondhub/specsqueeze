@@ -131,8 +131,8 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                     : import.meta.env.VITE_WEB3FORMS_KEY_B;
 
                 const destinationEmail = useKeyA
-                    ? "fesmoraes97@gmail.com"
-                    : "fesmoraes97.2@gmail.com";
+                    ? "carlos@squeeze.com.br"
+                    : "nenivalone@squeeze.com.br";
 
                 const response = await fetch("https://api.web3forms.com/submit", {
                     method: "POST",

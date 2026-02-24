@@ -15,14 +15,26 @@ const LineBox = ({ icon, title, subtitle, points, ctaLabel, index }: LineBoxProp
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover="hover"
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="p-4 md:p-6 bg-white/5 border border-white/10 rounded-2xl flex flex-col h-full hover:border-primary-accent/30 transition-all duration-300 group"
+            className="p-4 md:p-6 bg-white/5 border border-white/10 rounded-2xl flex flex-col h-full cursor-pointer"
+            variants={{
+                hover: {
+                    borderColor: "rgba(59, 158, 255, 0.4)",
+                    backgroundColor: "rgba(255, 255, 255, 0.08)"
+                }
+            }}
         >
             <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-full bg-primary-accent/10 flex items-center justify-center group-hover:bg-primary-accent/20 transition-colors shrink-0">
+                <motion.div
+                    className="w-10 h-10 rounded-full bg-primary-accent/10 flex items-center justify-center transition-colors shrink-0"
+                    variants={{
+                        hover: { backgroundColor: "rgba(59, 158, 255, 0.25)" }
+                    }}
+                >
                     <i className={`fi ${icon} text-primary-accent text-lg leading-none flex items-center justify-center`}></i>
-                </div>
+                </motion.div>
                 <h4 className="font-sans font-bold text-xl text-foreground">{title}</h4>
             </div>
 

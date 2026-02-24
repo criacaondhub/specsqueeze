@@ -27,16 +27,26 @@ const ProductLine = ({
             <motion.div
                 initial={{ opacity: 0, x: reverse ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
+                whileHover="hover"
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="w-full md:w-1/2"
+                className="w-full md:w-1/2 cursor-pointer"
             >
-                <div className="relative group">
-                    <div className="absolute -inset-4 bg-primary-accent/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                    <img
+                <div className="relative">
+                    <motion.div
+                        className="absolute -inset-4 bg-primary-accent/10 rounded-3xl blur-2xl pointer-events-none"
+                        variants={{
+                            hover: { opacity: 1, scale: 1.1 }
+                        }}
+                        initial={{ opacity: 0 }}
+                    />
+                    <motion.img
+                        variants={{
+                            hover: { scale: 1.05 }
+                        }}
                         src={`assets/${image}`}
                         alt={tag}
-                        className="relative w-full h-auto rounded-3xl drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-[1.02]"
+                        className="relative w-full h-auto rounded-3xl drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] transition-transform duration-500"
                     />
                 </div>
             </motion.div>

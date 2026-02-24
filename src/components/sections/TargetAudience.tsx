@@ -43,12 +43,24 @@ export const TargetAudience = () => {
                     <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        whileHover="hover"
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative group h-full"
+                        className="relative h-full cursor-pointer"
                     >
-                        <div className="absolute inset-0 bg-cta/5 rounded-3xl blur-xl group-hover:bg-cta/10 transition-all duration-500" />
-                        <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col">
+                        <motion.div
+                            variants={{
+                                hover: { opacity: 0.4, scale: 1.15 }
+                            }}
+                            initial={{ opacity: 0 }}
+                            className="absolute inset-0 bg-cta/40 blur-3xl rounded-3xl pointer-events-none transition-all duration-500"
+                        />
+                        <motion.div
+                            variants={{
+                                hover: { borderColor: "rgba(0, 208, 108, 0.8)", backgroundColor: "rgba(255, 255, 255, 0.12)" }
+                            }}
+                            className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col transition-all duration-500"
+                        >
                             <h3 className="text-[20px] md:text-3xl font-bold font-sans mb-8 flex items-center gap-4">
                                 <span className="w-10 h-10 rounded-full bg-cta/20 flex items-center justify-center">
                                     <i className="fi fi-rr-heart text-cta text-base flex items-center justify-center"></i>
@@ -68,19 +80,31 @@ export const TargetAudience = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
                     </motion.div>
 
                     {/* BOX 2: NÃO É PARA VOCÊ */}
                     <motion.div
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
+                        whileHover="hover"
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
-                        className="relative group h-full"
+                        className="relative h-full cursor-pointer"
                     >
-                        <div className="absolute inset-0 bg-red-500/5 rounded-3xl blur-xl group-hover:bg-red-500/10 transition-all duration-500" />
-                        <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col items-center md:items-start text-left">
+                        <motion.div
+                            variants={{
+                                hover: { opacity: 0.4, scale: 1.15 }
+                            }}
+                            initial={{ opacity: 0 }}
+                            className="absolute inset-0 bg-red-500/40 blur-3xl rounded-3xl pointer-events-none transition-all duration-500"
+                        />
+                        <motion.div
+                            variants={{
+                                hover: { borderColor: "rgba(239, 68, 68, 0.8)", backgroundColor: "rgba(255, 255, 255, 0.12)" }
+                            }}
+                            className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col items-center md:items-start text-left transition-all duration-500"
+                        >
                             <h3 className="text-[20px] md:text-3xl font-bold font-sans mb-8 flex items-center gap-4">
                                 <span className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
                                     <i className="fi fi-rr-ban text-red-500 text-base flex items-center justify-center"></i>
@@ -100,8 +124,9 @@ export const TargetAudience = () => {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                        </motion.div>
                     </motion.div>
+
 
                 </div>
 

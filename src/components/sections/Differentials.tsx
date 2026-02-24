@@ -12,17 +12,51 @@ const DifferentialCard = ({ icon, title, description, index }: DifferentialCardP
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            whileHover="hover"
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="p-8 bg-white border-primary-accent/30 shadow-[0_20px_40px_rgba(0,0,0,0.05)] md:border-slate-100 md:shadow-none md:hover:border-primary-accent/30 md:hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all duration-300 group rounded-2xl"
+            className="p-8 bg-white border border-slate-100 rounded-2xl cursor-pointer flex flex-col h-full relative overflow-hidden"
+            variants={{
+                hover: {
+                    y: -8,
+                    borderColor: "rgba(59, 158, 255, 0.3)",
+                    boxShadow: "0 20px 40px rgba(59, 158, 255, 0.1)",
+                    transition: { duration: 0.3, ease: "easeOut" }
+                }
+            }}
         >
-            <div className="w-12 h-12 rounded-xl bg-primary-accent/10 md:bg-slate-50 md:group-hover:bg-primary-accent/10 transition-colors duration-300 flex items-center justify-center mb-6">
-                <i className={`fi ${icon} text-primary-accent md:text-slate-400 md:group-hover:text-primary-accent text-xl transition-colors duration-300`}></i>
-            </div>
+            <motion.div
+                className="w-14 h-14 rounded-2xl bg-slate-50 flex items-center justify-center mb-6 transition-colors duration-300"
+                variants={{
+                    hover: {
+                        backgroundColor: "rgba(59, 158, 255, 0.15)",
+                        scale: 1.1
+                    }
+                }}
+            >
+                <motion.i
+                    className={`fi ${icon} text-slate-400 text-2xl transition-colors duration-300`}
+                    variants={{
+                        hover: {
+                            color: "#3b9eff"
+                        }
+                    }}
+                ></motion.i>
+            </motion.div>
             <h4 className="font-sans font-bold text-slate-900 text-xl mb-3">{title}</h4>
             <p className="text-slate-500 leading-relaxed text-sm">
                 {description}
             </p>
+
+            {/* Linha de destaque na base */}
+            <motion.div
+                className="absolute bottom-0 left-0 right-0 h-1 bg-primary-accent"
+                initial={{ scaleX: 0 }}
+                variants={{
+                    hover: { scaleX: 1 }
+                }}
+                transition={{ duration: 0.3 }}
+            />
         </motion.div>
     )
 }
