@@ -209,18 +209,18 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                             viewport={{ once: true }}
                             className="space-y-8"
                         >
-                            <h2 className="text-4xl md:text-5xl lg:text-[64px] font-normal leading-[1.1] mb-6">
+                            <h2 className="text-[42px] leading-[1.1] md:text-5xl lg:text-[64px] font-normal mb-6 text-center lg:text-left text-balance mx-auto lg:mx-0">
                                 Sua marca em<br />
                                 <span className="highlight">escala industrial</span><br />
                                 e design premium.
                             </h2>
-                            <p className="text-xl text-foreground/80 leading-relaxed max-w-md">
+                            <p className="text-xl text-foreground/80 leading-relaxed max-w-md mx-auto lg:mx-0 text-center lg:text-left">
                                 Para acelerar seu atendimento, preencha com o máximo de clareza.
                             </p>
 
-                            <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 max-w-sm">
+                            <div className="p-4 md:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 max-w-sm mx-auto lg:mx-0 text-center lg:text-left flex flex-col items-center lg:items-start">
                                 <p className="text-primary-accent font-bold uppercase tracking-widest text-xs">Atenção</p>
-                                <p className="text-foreground/70 text-sm leading-relaxed">
+                                <p className="text-foreground/70 text-sm leading-relaxed text-center lg:text-left">
                                     Atendimento exclusivo B2B. <br />
                                     Pedido mínimo: 300 unidades.
                                 </p>
@@ -234,7 +234,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            className="p-8 md:p-12 rounded-[32px] bg-white/5 border border-white/10 backdrop-blur-sm relative"
+                            className="p-4 md:p-12 rounded-[32px] bg-white/5 border border-white/10 backdrop-blur-sm relative"
                         >
                             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
@@ -444,7 +444,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                             type="submit"
                                             disabled={!formData.confirmacao || isSubmitting}
                                             className={cn(
-                                                "button-cta scale-110 !font-bold transition-all duration-300 min-w-[280px]",
+                                                "button-cta w-full md:w-auto md:scale-110 !font-bold transition-all duration-300 md:min-w-[280px]",
                                                 (!formData.confirmacao || isSubmitting) && "opacity-50 grayscale cursor-not-allowed"
                                             )}
                                         >
