@@ -13,7 +13,7 @@ export const BrandCarousel = () => {
     ];
 
     return (
-        <section className="relative py-10 bg-transparent overflow-hidden">
+        <section className="relative pt-[10px] pb-10 md:py-10 bg-transparent overflow-hidden">
             <div className="container mx-auto px-6 mb-8">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -21,7 +21,7 @@ export const BrandCarousel = () => {
                     viewport={{ once: true }}
                     className="text-center"
                 >
-                    <h2 className="text-3xl md:text-5xl font-normal leading-none tracking-tight uppercase">
+                    <h2 className="text-[38px] md:text-[64px] font-normal leading-none tracking-tight uppercase">
                         ELES <span className="text-primary-accent">ESCOLHERAM</span> A SPEC
                     </h2>
                 </motion.div>

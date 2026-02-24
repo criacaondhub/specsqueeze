@@ -11,7 +11,7 @@ export const Hero = () => {
     ]
 
     return (
-        <section id="hero" className="relative min-h-screen w-full flex flex-col items-center justify-start overflow-hidden pt-6 pb-[80px]">
+        <section id="hero" className="relative min-h-screen w-full flex flex-col items-center justify-start overflow-hidden pt-6 pb-[10px] md:pb-[80px]">
 
             {/* HERO BACKGROUND OVERLAY */}
             <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
