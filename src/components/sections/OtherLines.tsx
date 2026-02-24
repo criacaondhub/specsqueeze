@@ -17,7 +17,7 @@ const LineBox = ({ icon, title, subtitle, points, ctaLabel, index }: LineBoxProp
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="p-6 bg-white/5 border border-white/10 rounded-2xl flex flex-col h-full hover:border-primary-accent/30 transition-all duration-300 group"
+            className="p-4 md:p-6 bg-white/5 border border-white/10 rounded-2xl flex flex-col h-full hover:border-primary-accent/30 transition-all duration-300 group"
         >
             <div className="flex items-center gap-3 mb-3">
                 <div className="w-10 h-10 rounded-full bg-primary-accent/10 flex items-center justify-center group-hover:bg-primary-accent/20 transition-colors shrink-0">
@@ -60,7 +60,7 @@ export const OtherLines = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-[64px] font-normal leading-tight md:leading-[1.05]"
+                        className="text-[42px] leading-none md:text-[64px] font-normal md:leading-[1.05]"
                     >
                         Além das linhas principais, temos <br className="hidden md:block" />
                         <span className="highlight">opções estratégicas para projetos específicos.</span>
@@ -159,7 +159,7 @@ export const OtherLines = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mt-16 max-w-2xl mx-auto p-8 rounded-2xl bg-white/5 border border-white/10 text-center"
+                    className="mt-10 md:mt-16 max-w-2xl mx-auto p-8 rounded-2xl bg-white/5 border border-white/10 text-center"
                 >
                     <p className="text-slate-400 text-sm leading-relaxed">
                         <strong className="text-foreground font-bold">Atendimento exclusivo para empresas.</strong><br />
