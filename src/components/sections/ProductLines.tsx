@@ -90,7 +90,7 @@ const ProductLine = ({
                 </p>
 
                 {/* CTA (Menor escala) */}
-                <div className="flex justify-start pt-4">
+                <div className="flex justify-start pt-4 w-full">
                     <CtaButton
                         label={ctaLabel}
                         className="scale-90 origin-left"

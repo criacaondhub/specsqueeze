@@ -111,7 +111,7 @@ export const TargetAudience = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6 }}
-                    className="flex justify-center"
+                    className="flex justify-center w-full"
                 >
                     <CtaButton
                         label="Sou empresa e preciso Fazer orçamento"

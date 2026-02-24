@@ -15,10 +15,17 @@ export const Hero = () => {
 
             {/* HERO BACKGROUND OVERLAY */}
             <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
+                {/* Desktop Overlay */}
                 <img
                     src="assets/bg-hero-overlay.webp"
                     alt=""
-                    className="w-full h-full object-cover mix-blend-overlay opacity-10"
+                    className="hidden md:block w-full h-full object-cover mix-blend-overlay opacity-10"
+                />
+                {/* Mobile Overlay */}
+                <img
+                    src="assets/bg-hero-overlay-mobile.webp"
+                    alt=""
+                    className="block md:hidden w-full h-full object-cover mix-blend-overlay opacity-[0.07]"
                 />
             </div>
 
@@ -62,20 +69,22 @@ export const Hero = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <button className="bg-cta hover:scale-105 active:scale-95 transition-all text-white font-bold text-[10px] md:text-[12px] py-3 px-6 rounded-full shadow-[0_0_20px_rgba(0,208,108,0.3)]">
-                        FAZER ORÇAMENTO
-                    </button>
+                    <a href="#orcamento">
+                        <button className="bg-cta hover:scale-105 active:scale-95 transition-all text-white font-bold text-[10px] md:text-[12px] py-3 px-6 rounded-full shadow-[0_0_20px_rgba(0,208,108,0.3)]">
+                            FAZER ORÇAMENTO
+                        </button>
+                    </a>
                 </motion.div>
             </header>
 
-            <div className="relative z-10 container mx-auto px-4 flex flex-col items-center text-center -mt-8 md:-mt-12 lg:-mt-20">
+            <div className="relative z-10 container mx-auto px-4 flex flex-col items-center text-center -mt-[52px] md:-mt-12 lg:-mt-20">
 
-                {/* ELEMENTO VISUAL (SQUEEZE) */}
+                {/* ELEMENTO VISUAL (SQUEEZE) - DESKTOP */}
                 <motion.div
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-                    className="relative w-full max-w-[400px] md:max-w-[800px] lg:max-w-[1200px] mb-[-40px] md:mb-[-80px] lg:mb-[-120px] z-10"
+                    className="hidden md:block relative w-full max-w-[800px] lg:max-w-[1200px] mb-[-80px] lg:mb-[-120px] z-10"
                 >
                     <img
                         src="assets/squeeze.webp"
@@ -84,15 +93,29 @@ export const Hero = () => {
                     />
                 </motion.div>
 
+                {/* ELEMENTO VISUAL (HERO MOBILE) - MOBILE (FORA A FORA) */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+                    className="block md:hidden w-[100vw] -mx-4 z-10 mb-2"
+                >
+                    <img
+                        src="assets/hero-mobile.webp"
+                        alt="Spec Squeeze Mobile"
+                        className="w-full h-auto"
+                    />
+                </motion.div>
+
                 {/* TÍTULO */}
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.6 }}
-                    className="text-3xl md:text-5xl lg:text-[5rem] font-normal leading-[1.05] mb-8 relative z-20 max-w-[1200px]"
+                    className="text-[38px] md:text-5xl lg:text-[5rem] font-normal leading-[1.05] mb-[30px] md:mb-8 relative z-20 max-w-[1200px]"
                 >
-                    Reebok, Gatorade, Bradesco e +50 grandes marcas<br className="hidden md:block" />
-                    escolheram a Spec. <span className="highlight">Seu brinde merece o mesmo nível.</span>
+                    Reebok, Gatorade, Bradesco e +50 grandes marcas <br className="hidden md:block" />
+                    escolheram a Spec. <span className="highlight inline-block leading-none md:leading-inherit">Seu brinde merece o mesmo nível.</span>
                 </motion.h1>
 
                 {/* SUBTÍTULO */}
@@ -100,9 +123,9 @@ export const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="text-base md:text-xl lg:text-2xl text-foreground font-medium mb-10 max-w-[950px] leading-[1.1] opacity-90"
+                    className="text-base md:text-xl lg:text-2xl text-foreground font-medium mb-[30px] md:mb-10 max-w-[950px] leading-[1.1] opacity-90"
                 >
-                    Fabricação própria, impressão colorida e estrutura para grandes volumes,<br className="hidden md:block" />
+                    Fabricação própria, impressão colorida e estrutura para grandes volumes, <br className="hidden md:block" />
                     que fornecedores comuns não conseguem entregar.
                 </motion.p>
 
@@ -111,7 +134,7 @@ export const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 1 }}
-                    className="mb-8"
+                    className="mb-8 w-full flex justify-center"
                 >
                     <CtaButton
                         label="SOLICITAR ORÇAMENTO PARA MINHA EMPRESA"

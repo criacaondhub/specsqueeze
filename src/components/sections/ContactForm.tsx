@@ -124,8 +124,16 @@ Personalização: ${formData.personalizacao}
 Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
 
             try {
-                // Envio automático via Web3Forms
-                // access_key: Chave necessária do web3forms.com
+                // Lógica de Distribuição de Leads 50/50
+                const useKeyA = Math.random() < 0.5;
+                const activeKey = useKeyA
+                    ? import.meta.env.VITE_WEB3FORMS_KEY_A
+                    : import.meta.env.VITE_WEB3FORMS_KEY_B;
+
+                const destinationEmail = useKeyA
+                    ? "fesmoraes97@gmail.com"
+                    : "fesmoraes97.2@gmail.com";
+
                 const response = await fetch("https://api.web3forms.com/submit", {
                     method: "POST",
                     headers: {
@@ -133,17 +141,18 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                         "Accept": "application/json"
                     },
                     body: JSON.stringify({
-                        access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+                        access_key: activeKey,
                         from_name: "Spec Squeeze Leads",
                         subject: `Novo Orçamento: ${formData.nome} (${companyName || 'B2B'})`,
-                        to: "fesmoraes97@gmail.com", // Destinatário fixo forçado
+                        to: destinationEmail,
                         message: emailContent,
                         ...Object.fromEntries(
                             Object.entries(formData).map(([key, val]) =>
                                 key === 'email' ? ['lead_email', val] : [key, val]
                             )
                         ),
-                        empresa: companyName
+                        empresa: companyName,
+                        atendimento_por: useKeyA ? "Consultor A" : "Consultor B"
                     })
                 });
 
