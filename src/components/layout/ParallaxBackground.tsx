@@ -2,7 +2,7 @@ import LiquidEther from '../ui/LiquidEther';
 
 export const ParallaxBackground = () => {
     return (
-        <div className="fixed inset-0 w-full h-full z-[-1] pointer-events-none bg-[#070d16]">
+        <div className="fixed inset-0 w-full h-full z-0 pointer-events-none bg-[#070d16]">
             <div className="absolute inset-0 opacity-50 hidden md:block">
                 <LiquidEther
                     colors={['#09325d', '#23619f', '#90c7fe']}

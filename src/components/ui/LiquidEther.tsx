@@ -861,8 +861,8 @@ export default function LiquidEther({
                 this.createShaderPass();
             }
             getFloatType() {
-                const isIOS = /(iPad|iPhone|iPod)/i.test(navigator.userAgent);
-                return isIOS ? THREE.HalfFloatType : THREE.FloatType;
+                // HalfFloatType is widely supported and prevents issues with float-buffer-color extension on some desktop GPUs
+                return THREE.HalfFloatType;
             }
             createAllFBO() {
                 const type = this.getFloatType();
