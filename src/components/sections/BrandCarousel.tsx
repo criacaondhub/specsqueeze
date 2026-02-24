@@ -21,7 +21,7 @@ export const BrandCarousel = () => {
                     viewport={{ once: true }}
                     className="text-center"
                 >
-                    <h2 className="text-[42px] md:text-[64px] font-normal leading-none tracking-tight uppercase">
+                    <h2 className="text-[42px] tracking-normal md:tracking-tight md:text-[64px] font-normal leading-none uppercase">
                         ELES <span className="text-primary-accent">ESCOLHERAM</span> A SPEC
                     </h2>
                 </motion.div>

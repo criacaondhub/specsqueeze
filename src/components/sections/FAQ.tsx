@@ -94,7 +94,7 @@ export const FAQ = () => {
                     viewport={{ once: true }}
                     className="text-center mb-10"
                 >
-                    <h2 className="text-[42px] leading-none md:text-5xl lg:text-[64px] font-normal md:leading-tight tracking-tight">
+                    <h2 className="text-[42px] leading-none md:text-5xl lg:text-[64px] font-normal md:leading-tight tracking-normal md:tracking-tight">
                         <span className="text-primary-accent">Perguntas</span> Frequentes
                     </h2>
                     <p className="mt-6 text-slate-500 text-lg max-w-xl mx-auto">

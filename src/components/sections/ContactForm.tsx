@@ -209,7 +209,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                             viewport={{ once: true }}
                             className="space-y-8"
                         >
-                            <h2 className="text-[42px] leading-[1.1] md:text-5xl lg:text-[64px] font-normal mb-6 text-center lg:text-left text-balance mx-auto lg:mx-0">
+                            <h2 className="text-[42px] leading-none md:text-5xl lg:text-[64px] font-normal mb-6 text-center lg:text-left text-balance mx-auto lg:mx-0">
                                 Sua marca em<br />
                                 <span className="highlight">escala industrial</span><br />
                                 e design premium.
