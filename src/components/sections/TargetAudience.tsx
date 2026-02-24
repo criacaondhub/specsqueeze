@@ -31,8 +31,8 @@ export const TargetAudience = () => {
                     transition={{ duration: 0.6 }}
                     className="text-center mb-[48px]"
                 >
-                    <h2 className="text-3xl md:text-5xl lg:text-[64px] font-normal leading-[1.05] whitespace-nowrap">
-                        Antes de solicitar orçamento: <span className="highlight">a Spec é para você?</span>
+                    <h2 className="text-[42px] md:text-5xl lg:text-[64px] font-normal leading-[1.05] whitespace-normal md:whitespace-nowrap">
+                        Antes de solicitar orçamento: <br className="md:hidden" /> <span className="highlight">a Spec é para você?</span>
                     </h2>
                 </motion.div>
 
@@ -49,7 +49,7 @@ export const TargetAudience = () => {
                     >
                         <div className="absolute inset-0 bg-cta/5 rounded-3xl blur-xl group-hover:bg-cta/10 transition-all duration-500" />
                         <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col">
-                            <h3 className="text-2xl md:text-3xl font-bold font-sans mb-8 flex items-center gap-4">
+                            <h3 className="text-[20px] md:text-3xl font-bold font-sans mb-8 flex items-center gap-4">
                                 <span className="w-10 h-10 rounded-full bg-cta/20 flex items-center justify-center">
                                     <i className="fi fi-rr-heart text-cta text-base flex items-center justify-center"></i>
                                 </span>
@@ -60,7 +60,7 @@ export const TargetAudience = () => {
                                 {positivePoints.map((point, index) => (
                                     <li key={index} className="flex items-start gap-4">
                                         <i className="fi fi-rr-check text-cta text-xl mt-1 flex-shrink-0"></i>
-                                        <p className="text-foreground/80 text-lg leading-[1.4]">
+                                        <p className="text-foreground/80 text-base md:text-lg leading-[1.4]">
                                             {point.text}
                                             {point.breakNode && <br className="hidden md:block" />}
                                             <span className="text-foreground font-bold">{point.highlight}</span>
@@ -80,8 +80,8 @@ export const TargetAudience = () => {
                         className="relative group h-full"
                     >
                         <div className="absolute inset-0 bg-red-500/5 rounded-3xl blur-xl group-hover:bg-red-500/10 transition-all duration-500" />
-                        <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col">
-                            <h3 className="text-2xl md:text-3xl font-bold font-sans mb-8 flex items-center gap-4">
+                        <div className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col items-center md:items-start text-left">
+                            <h3 className="text-[20px] md:text-3xl font-bold font-sans mb-8 flex items-center gap-4">
                                 <span className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
                                     <i className="fi fi-rr-ban text-red-500 text-base flex items-center justify-center"></i>
                                 </span>
@@ -92,7 +92,7 @@ export const TargetAudience = () => {
                                 {negativePoints.map((point, index) => (
                                     <li key={index} className="flex items-start gap-4">
                                         <i className="fi fi-rr-cross text-red-500/70 text-base mt-1.5 flex-shrink-0"></i>
-                                        <p className="text-foreground/60 text-lg leading-[1.4]">
+                                        <p className="text-foreground/60 text-base md:text-lg leading-[1.4]">
                                             {point.text}
                                             {point.breakNode && <br className="hidden md:block" />}
                                             <span className="text-foreground/80 font-bold">{point.highlight}</span>
