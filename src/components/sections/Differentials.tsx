@@ -14,10 +14,10 @@ const DifferentialCard = ({ icon, title, description, index }: DifferentialCardP
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className="p-8 bg-white border border-slate-100 rounded-2xl hover:border-primary-accent/30 hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all duration-300 group"
+            className="p-8 bg-white border-primary-accent/30 shadow-[0_20px_40px_rgba(0,0,0,0.05)] md:border-slate-100 md:shadow-none md:hover:border-primary-accent/30 md:hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all duration-300 group rounded-2xl"
         >
-            <div className="w-12 h-12 rounded-xl bg-slate-50 flex items-center justify-center mb-6 group-hover:bg-primary-accent/10 transition-colors duration-300">
-                <i className={`fi ${icon} text-slate-400 group-hover:text-primary-accent text-xl transition-colors duration-300`}></i>
+            <div className="w-12 h-12 rounded-xl bg-primary-accent/10 md:bg-slate-50 md:group-hover:bg-primary-accent/10 transition-colors duration-300 flex items-center justify-center mb-6">
+                <i className={`fi ${icon} text-primary-accent md:text-slate-400 md:group-hover:text-primary-accent text-xl transition-colors duration-300`}></i>
             </div>
             <h4 className="font-sans font-bold text-slate-900 text-xl mb-3">{title}</h4>
             <p className="text-slate-500 leading-relaxed text-sm">
@@ -64,7 +64,7 @@ export const Differentials = () => {
     return (
         <section className="relative bg-white py-[100px] px-6 overflow-hidden">
             {/* Squeeze Silhouette Watermark */}
-            <div className="absolute top-1/2 -right-24 -translate-y-1/2 h-[120%] pointer-events-none opacity-[0.02] select-none">
+            <div className="absolute top-1/2 -right-24 -translate-y-1/2 h-[120%] pointer-events-none opacity-[0.02] select-none hidden md:block">
                 <img
                     src="assets/squeeze-700.svg"
                     alt=""
@@ -79,9 +79,9 @@ export const Differentials = () => {
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-slate-900 text-4xl md:text-[64px] font-normal leading-tight mb-4"
+                        className="text-slate-900 text-[42px] leading-none md:text-[64px] font-normal md:leading-tight mb-4"
                     >
-                        Por que <span className="text-primary-accent">empresas grandes</span> escolhem a Spec
+                        Por que <span className="text-primary-accent">empresas grandes</span> escolhem a Spec?
                     </motion.h2>
                     <motion.div
                         initial={{ width: 0 }}
