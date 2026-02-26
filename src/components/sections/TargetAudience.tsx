@@ -103,7 +103,7 @@ export const TargetAudience = () => {
                             variants={{
                                 hover: { borderColor: "rgba(239, 68, 68, 0.8)", backgroundColor: "rgba(255, 255, 255, 0.12)" }
                             }}
-                            className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col items-center md:items-start text-left transition-all duration-500"
+                            className="relative bg-white/5 backdrop-blur-sm border border-white/10 p-8 md:p-12 rounded-3xl h-full flex flex-col transition-all duration-500"
                         >
                             <h3 className="text-[20px] md:text-3xl font-bold font-sans mb-8 flex items-center gap-4">
                                 <span className="w-10 h-10 rounded-full bg-red-500/20 flex items-center justify-center">
