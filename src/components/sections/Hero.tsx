@@ -31,8 +31,8 @@ export const Hero = () => {
                 />
             </div>
 
-            {/* HEADER ROW (Logo, Badges, Mini CTA) */}
-            <header className="relative z-30 w-full container mx-auto px-6 h-20 flex items-center justify-between mb-8 md:mb-12">
+            {/* HEADER ROW (Logo + Mini CTA) */}
+            <header className="relative z-30 w-full container mx-auto px-6 h-20 flex items-center justify-between mb-4 md:mb-6">
                 {/* LOGO LEFT */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -45,24 +45,6 @@ export const Hero = () => {
                         alt="Logo Spec Squeeze"
                         className="h-[40px] md:h-[54px] w-auto"
                     />
-                </motion.div>
-
-                {/* BADGES CENTER */}
-                <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="hidden lg:flex items-center gap-6 bg-white/5 backdrop-blur-md px-8 py-3.5 rounded-full border border-white/10"
-                >
-                    {badges.map((badge, index) => (
-                        <div key={index} className="flex items-center gap-2.5 whitespace-nowrap leading-none">
-                            <i className="fi fi-rr-check text-cta text-[14px] flex items-center translate-y-[0.5px]"></i>
-                            <span className="text-[11px] font-bold uppercase tracking-wider text-foreground/80">{badge}</span>
-                            {index < badges.length - 1 && (
-                                <div className="w-[1px] h-3 bg-white/20 ml-3.5"></div>
-                            )}
-                        </div>
-                    ))}
                 </motion.div>
 
                 {/* MINI CTA RIGHT */}
@@ -79,7 +61,25 @@ export const Hero = () => {
                 </motion.div>
             </header>
 
-            <div className="relative z-10 container mx-auto px-4 flex flex-col items-center text-center -mt-[52px] md:-mt-12 lg:-mt-20">
+            {/* BADGES — Desktop Only (boxes individuais) */}
+            <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="hidden lg:flex items-center justify-center gap-3 relative z-30 mb-4"
+            >
+                {badges.map((badge, index) => (
+                    <div
+                        key={index}
+                        className="flex items-center gap-2 bg-white/5 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/10 hover:border-primary-accent/30 hover:bg-white/8 transition-all duration-300"
+                    >
+                        <i className="fi fi-rr-check text-cta text-[12px] flex items-center"></i>
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-foreground/80">{badge}</span>
+                    </div>
+                ))}
+            </motion.div>
+
+            <div className="relative z-10 container mx-auto px-4 flex flex-col items-center text-center -mt-[52px] md:-mt-6 lg:-mt-8">
 
                 {/* ELEMENTO VISUAL (SQUEEZE) - DESKTOP */}
                 <motion.div
