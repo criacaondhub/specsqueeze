@@ -40,6 +40,9 @@ const initialData: FormData = {
     confirmacao: false,
 };
 
+const normalize = (str: string) =>
+    str ? str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase() : "";
+
 export const ContactForm = () => {
     const [formData, setFormData] = useState<FormData>(initialData);
     const [errors, setErrors] = useState<Partial<Record<keyof FormData, boolean>>>({});
@@ -48,6 +51,42 @@ export const ContactForm = () => {
     const [companyName, setCompanyName] = useState('');
     const [isValidatingCnpj, setIsValidatingCnpj] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [cities, setCities] = useState<string[]>([]);
+    const [showCityDropdown, setShowCityDropdown] = useState(false);
+
+    // Filtra as cidades garantindo que só apareçam as que COMEÇAM com o texto e ignorando acentos
+    const filteredCities = React.useMemo(() => {
+        const query = normalize(formData.cidadeUf);
+        if (query.length < 1) return [];
+
+        return cities
+            .filter(city => normalize(city).startsWith(query))
+            .slice(0, 50); // Limita a 50 para o navegador não travar
+    }, [cities, formData.cidadeUf]);
+
+    // Fetch cities from IBGE
+    React.useEffect(() => {
+        const fetchCities = async () => {
+            try {
+                // Tenta carregar do cache para ser instantâneo
+                const cached = localStorage.getItem('ibge-cities-cache');
+                if (cached) {
+                    setCities(JSON.parse(cached));
+                }
+
+                const response = await fetch('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome');
+                if (response.ok) {
+                    const data = await response.json();
+                    const formatted = data.map((c: any) => `${c.nome} - ${c.microrregiao?.mesorregiao?.UF?.sigla || ''}`);
+                    setCities(formatted);
+                    localStorage.setItem('ibge-cities-cache', JSON.stringify(formatted));
+                }
+            } catch (error) {
+                console.error('Erro IBGE:', error);
+            }
+        };
+        fetchCities();
+    }, []);
 
     const validateField = (name: keyof FormData, value: any) => {
         if (name === 'observacoes') return false;
@@ -189,7 +228,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
     };
 
     return (
-        <section id="orcamento" className="relative py-24 px-6 overflow-hidden">
+        <section id="orcamento" className="relative py-24 px-6">
             <div className="container mx-auto max-w-[1300px] relative z-10">
                 <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
 
@@ -304,16 +343,48 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                     />
                                 </div>
 
-                                {/* 6. Cidade/UF */}
-                                <div className="space-y-2">
+                                {/* 6. Cidade / UF Custom Dropdown */}
+                                <div className="space-y-2 relative">
                                     <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Cidade / UF</label>
-                                    <input
-                                        type="text"
-                                        placeholder="São Paulo - SP"
-                                        className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground focus:outline-none focus:border-primary-accent transition-colors", errors.cidadeUf && "border-red-500/50 bg-red-500/5")}
-                                        value={formData.cidadeUf}
-                                        onChange={(e) => handleChange('cidadeUf', e.target.value)}
-                                    />
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder="Ex: São Paulo - SP"
+                                            className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-primary-accent transition-colors", errors.cidadeUf && "border-red-500/50 bg-red-500/5")}
+                                            value={formData.cidadeUf}
+                                            onChange={(e) => {
+                                                handleChange('cidadeUf', e.target.value);
+                                                setShowCityDropdown(true);
+                                            }}
+                                            onFocus={() => setShowCityDropdown(true)}
+                                            onBlur={() => setTimeout(() => setShowCityDropdown(false), 200)}
+                                        />
+
+                                        <AnimatePresence>
+                                            {showCityDropdown && filteredCities.length > 0 && (
+                                                <motion.div
+                                                    initial={{ opacity: 0, y: 10 }}
+                                                    animate={{ opacity: 1, y: 0 }}
+                                                    exit={{ opacity: 0, y: 10 }}
+                                                    className="absolute top-full left-0 right-0 mt-2 bg-[#0a0f1d] border border-white/10 rounded-xl shadow-2xl z-[999] max-h-[250px] overflow-y-auto custom-scrollbar"
+                                                >
+                                                    {filteredCities.map((city, idx) => (
+                                                        <button
+                                                            key={idx}
+                                                            type="button"
+                                                            className="w-full text-left px-4 py-3 text-sm text-foreground/80 hover:bg-primary-accent/10 hover:text-primary-accent transition-colors border-b border-white/5 last:border-0"
+                                                            onClick={() => {
+                                                                handleChange('cidadeUf', city);
+                                                                setShowCityDropdown(false);
+                                                            }}
+                                                        >
+                                                            {city}
+                                                        </button>
+                                                    ))}
+                                                </motion.div>
+                                            )}
+                                        </AnimatePresence>
+                                    </div>
                                 </div>
 
                                 {/* 7. Quantidade */}
@@ -540,6 +611,21 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                     background: #0f172a;
                     color: white;
                 }
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: rgba(255, 255, 255, 0.05);
+                    border-radius: 10px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: rgba(59, 158, 255, 0.3);
+                    border-radius: 10px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: rgba(59, 158, 255, 0.5);
+                }
+
             `}} />
         </section>
     );
