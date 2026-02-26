@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  specsqueeze:
+    image: specsqueeze-lp:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - redespec
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [ node.role == manager ]
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.specsqueeze.rule=Host(`b2b.squeeze.com.br`)"
+        - "traefik.http.routers.specsqueeze.entrypoints=websecure"
+        - "traefik.http.routers.specsqueeze.tls.certresolver=letsencryptresolver"
+        - "traefik.http.routers.specsqueeze.service=specsqueeze"
+        - "traefik.http.services.specsqueeze.loadbalancer.server.port=80"
+        - "traefik.docker.network=redespec"
+        - "traefik.http.routers.specsqueeze.priority=1"
+
+networks:
+  redespec:
+    external: true
+    name: redespec
