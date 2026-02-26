@@ -5,11 +5,37 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/png" href="/assets/favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://b2b.squeeze.com.br/" />
+  <meta name="robots" content="index, follow" />
 
-  <!-- Fonts -->
+  <!-- Critical CSS: fundo escuro imediato para evitar flash branco -->
+  <style>
+    body {
+      background-color: #070d16;
+      margin: 0;
+    }
+
+    @font-face {
+      font-family: 'Figtree';
+      font-display: swap;
+      src: url('https://fonts.gstatic.com/s/figtree/v5/aem7-VhKiyGlL0WbDkaamqpfl7hNcPdC.woff2') format('woff2');
+      font-weight: 400 700;
+    }
+  </style>
+
+  <!-- Preload LCP images (desktop + mobile) -->
+  <link rel="preload" as="image" href="/assets/squeeze.webp" media="(min-width: 768px)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/assets/hero-mobile.webp" media="(max-width: 767px)" fetchpriority="high" />
+
+  <!-- Fonts (não-bloqueante) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" />
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet" media="print"
+    onload="this.media='all'" />
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;700&display=swap" rel="stylesheet" />
+  </noscript>
 
   <!-- Primary Meta Tags -->
   <title>Spec Squeeze | Brindes Personalizados para Empresas</title>
