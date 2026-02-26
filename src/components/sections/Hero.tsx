@@ -32,7 +32,7 @@ export const Hero = () => {
             </div>
 
             {/* HEADER ROW (Logo + Mini CTA) */}
-            <header className="relative z-30 w-full container mx-auto px-6 h-20 flex items-center justify-between mb-4 md:mb-6">
+            <header className="relative z-30 w-full container mx-auto px-6 h-20 flex items-center justify-between mb-0">
                 {/* LOGO LEFT */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
@@ -61,25 +61,7 @@ export const Hero = () => {
                 </motion.div>
             </header>
 
-            {/* BADGES — Desktop Only (boxes individuais) */}
-            <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="hidden lg:flex items-center justify-center gap-3 relative z-30 mb-4"
-            >
-                {badges.map((badge, index) => (
-                    <div
-                        key={index}
-                        className="flex items-center gap-2 bg-white/5 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/10 hover:border-primary-accent/30 hover:bg-white/8 transition-all duration-300"
-                    >
-                        <i className="fi fi-rr-check text-cta text-[12px] flex items-center"></i>
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-foreground/80">{badge}</span>
-                    </div>
-                ))}
-            </motion.div>
-
-            <div className="relative z-10 container mx-auto px-4 flex flex-col items-center text-center -mt-[52px] md:-mt-6 lg:-mt-8">
+            <div className="relative z-10 container mx-auto px-4 flex flex-col items-center text-center -mt-[52px] md:mt-0">
 
                 {/* ELEMENTO VISUAL (SQUEEZE) - DESKTOP */}
                 <motion.div
@@ -129,11 +111,29 @@ export const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.8 }}
-                    className="text-base md:text-xl lg:text-2xl text-foreground font-medium mb-[30px] md:mb-10 max-w-[950px] leading-[1.1] opacity-90"
+                    className="text-base md:text-xl lg:text-2xl text-foreground font-medium mb-[30px] md:mb-8 max-w-[950px] leading-[1.1] opacity-90"
                 >
                     Fabricação própria, impressão colorida e estrutura para grandes volumes, <br className="hidden md:block" />
                     que fornecedores comuns não conseguem entregar.
                 </motion.p>
+
+                {/* BADGES — Desktop Only (entre subtítulo e CTA) */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                    className="hidden lg:flex items-center justify-center gap-3 relative z-30 mb-8"
+                >
+                    {badges.map((badge, index) => (
+                        <div
+                            key={index}
+                            className="flex items-center gap-2 bg-white/5 backdrop-blur-md px-4 py-2.5 rounded-full border border-white/10 hover:border-primary-accent/30 hover:bg-white/8 transition-all duration-300"
+                        >
+                            <i className="fi fi-rr-check text-cta text-[12px] flex items-center"></i>
+                            <span className="text-[11px] font-bold uppercase tracking-wider text-foreground/80">{badge}</span>
+                        </div>
+                    ))}
+                </motion.div>
 
                 {/* CTA */}
                 <motion.div
