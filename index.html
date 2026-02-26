@@ -21,7 +21,18 @@
       src: url('https://fonts.gstatic.com/s/figtree/v5/aem7-VhKiyGlL0WbDkaamqpfl7hNcPdC.woff2') format('woff2');
       font-weight: 400 700;
     }
+
+    @font-face {
+      font-family: 'Fearless';
+      font-display: swap;
+      src: url('/assets/fonts/Fearless.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
   </style>
+
+  <!-- Preload fontes críticas (LCP depende delas) -->
+  <link rel="preload" as="font" href="/assets/fonts/Fearless.woff2" type="font/woff2" crossorigin />
 
   <!-- Preload LCP images (desktop + mobile) -->
   <link rel="preload" as="image" href="/assets/squeeze.webp" media="(min-width: 768px)" fetchpriority="high" />

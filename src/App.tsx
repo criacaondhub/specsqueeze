@@ -1,7 +1,9 @@
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect, useState } from "react"
 import { Hero } from "@/components/sections/Hero"
 import { BrandCarousel } from "@/components/sections/BrandCarousel"
-import { ParallaxBackground } from "@/components/layout/ParallaxBackground"
+
+// Lazy load do background WebGL (Three.js ~489KB) — só carrega após o render inicial
+const ParallaxBackground = lazy(() => import("@/components/layout/ParallaxBackground").then(m => ({ default: m.ParallaxBackground })))
 
 // Lazy load seções abaixo da dobra (below-the-fold)
 const TargetAudience = lazy(() => import("@/components/sections/TargetAudience").then(m => ({ default: m.TargetAudience })))
@@ -14,9 +16,22 @@ const FAQ = lazy(() => import("@/components/sections/FAQ").then(m => ({ default:
 const Footer = lazy(() => import("@/components/sections/Footer").then(m => ({ default: m.Footer })))
 
 function App() {
+  // Atrasa o carregamento do background WebGL para liberar a main thread no LCP
+  const [showBackground, setShowBackground] = useState(false)
+
+  useEffect(() => {
+    // Carrega o Three.js somente após o browser ficar idle (após o LCP)
+    const id = requestIdleCallback(() => setShowBackground(true), { timeout: 3000 })
+    return () => cancelIdleCallback(id)
+  }, [])
+
   return (
     <div className="min-h-screen bg-transparent text-foreground font-sans antialiased overflow-x-hidden">
-      <ParallaxBackground />
+      {/* Background WebGL: carrega DEPOIS do LCP para não bloquear a main thread */}
+      <Suspense fallback={null}>
+        {showBackground && <ParallaxBackground />}
+      </Suspense>
+
       <main className="relative z-10">
         {/* Above-the-fold: carregamento imediato */}
         <Hero />
