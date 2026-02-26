@@ -22,7 +22,7 @@ const ProductLine = ({
     ctaLabel: string
 }) => {
     return (
-        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-0 mb-[60px] last:mb-0`}>
+        <div className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center justify-between gap-12 lg:gap-20 mb-[100px] last:mb-0`}>
             {/* IMAGEM */}
             <motion.div
                 initial={{ opacity: 0, x: reverse ? 50 : -50 }}
@@ -30,7 +30,7 @@ const ProductLine = ({
                 whileHover="hover"
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="w-full md:w-1/2 cursor-pointer"
+                className="w-full md:w-[48%] cursor-pointer"
             >
                 <div className="relative">
                     <motion.div
@@ -57,7 +57,7 @@ const ProductLine = ({
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="w-full md:w-1/2"
+                className="w-full md:w-[45%]"
             >
                 {/* CONTAINER COM BORDAS ARREDONDADAS (MOBILE SOMENTE) */}
                 <div className="flex flex-col items-center md:items-start text-center md:text-left space-y-6 bg-white/[0.03] backdrop-blur-sm border border-white/10 p-4 rounded-[40px] md:p-0 md:bg-transparent md:border-0 md:backdrop-blur-none w-full">
