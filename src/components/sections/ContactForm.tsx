@@ -124,15 +124,8 @@ Personalização: ${formData.personalizacao}
 Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
 
             try {
-                // Lógica de Distribuição de Leads 50/50
-                const useKeyA = Math.random() < 0.5;
-                const activeKey = useKeyA
-                    ? import.meta.env.VITE_WEB3FORMS_KEY_A
-                    : import.meta.env.VITE_WEB3FORMS_KEY_B;
-
-                const destinationEmail = useKeyA
-                    ? "carlos@squeeze.com.br"
-                    : "nenivalone@squeeze.com.br";
+                const activeKey = import.meta.env.VITE_WEB3FORMS_KEY;
+                const destinationEmail = "contato@squeeze.com.br";
 
                 const response = await fetch("https://api.web3forms.com/submit", {
                     method: "POST",
@@ -151,8 +144,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                 key === 'email' ? ['lead_email', val] : [key, val]
                             )
                         ),
-                        empresa: companyName,
-                        atendimento_por: useKeyA ? "Consultor A" : "Consultor B"
+                        empresa: companyName
                     })
                 });
 
