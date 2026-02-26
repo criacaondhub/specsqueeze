@@ -15,4 +15,20 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Separa as bibliotecas pesadas em chunks próprios
+          'vendor-three': ['three'],
+          'vendor-framer': ['framer-motion'],
+          'vendor-phone': ['react-phone-number-input'],
+        }
+      }
+    },
+    minify: 'esbuild',
+  },
+  esbuild: {
+    drop: ['console', 'debugger'],
+  },
 })

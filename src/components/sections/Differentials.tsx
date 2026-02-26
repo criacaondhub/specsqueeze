@@ -43,7 +43,7 @@ const DifferentialCard = ({ icon, title, description, index }: DifferentialCardP
                     }}
                 ></motion.i>
             </motion.div>
-            <h4 className="font-sans font-bold text-slate-900 text-xl mb-3">{title}</h4>
+            <h3 className="font-sans font-bold text-slate-900 text-xl mb-3">{title}</h3>
             <p className="text-slate-500 leading-relaxed text-sm">
                 {description}
             </p>

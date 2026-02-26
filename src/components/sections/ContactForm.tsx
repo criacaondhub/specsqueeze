@@ -389,9 +389,10 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
 
                                 {/* 7. Quantidade */}
                                 <div className="space-y-2 relative">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Quantidade Desejada</label>
+                                    <label htmlFor="quantidade" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Quantidade Desejada</label>
                                     <div className="relative group">
                                         <select
+                                            id="quantidade"
                                             className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.quantidade && "border-red-500/50 bg-red-500/5")}
                                             value={formData.quantidade}
                                             onChange={(e) => handleChange('quantidade', e.target.value)}
@@ -410,9 +411,10 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
 
                                 {/* 8. Modelo */}
                                 <div className="space-y-2 relative">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Linha / Modelo</label>
+                                    <label htmlFor="modelo" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Linha / Modelo</label>
                                     <div className="relative group">
                                         <select
+                                            id="modelo"
                                             className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.modelo && "border-red-500/50 bg-red-500/5")}
                                             value={formData.modelo}
                                             onChange={(e) => handleChange('modelo', e.target.value)}
@@ -431,9 +433,10 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
 
                                 {/* 9. Prazo */}
                                 <div className="space-y-2 relative">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Prazo Ideal</label>
+                                    <label htmlFor="prazo" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Prazo Ideal</label>
                                     <div className="relative group">
                                         <select
+                                            id="prazo"
                                             className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.prazo && "border-red-500/50 bg-red-500/5")}
                                             value={formData.prazo}
                                             onChange={(e) => handleChange('prazo', e.target.value)}
@@ -452,9 +455,10 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
 
                                 {/* 10. Personalização */}
                                 <div className="space-y-2 relative">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Personalização</label>
+                                    <label htmlFor="personalizacao" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Personalização</label>
                                     <div className="relative group">
                                         <select
+                                            id="personalizacao"
                                             className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.personalizacao && "border-red-500/50 bg-red-500/5")}
                                             value={formData.personalizacao}
                                             onChange={(e) => handleChange('personalizacao', e.target.value)}

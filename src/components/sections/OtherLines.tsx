@@ -35,7 +35,7 @@ const LineBox = ({ icon, title, subtitle, points, ctaLabel, index }: LineBoxProp
                 >
                     <i className={`fi ${icon} text-primary-accent text-lg leading-none flex items-center justify-center`}></i>
                 </motion.div>
-                <h4 className="font-sans font-bold text-xl text-foreground">{title}</h4>
+                <h3 className="font-sans font-bold text-xl text-foreground">{title}</h3>
             </div>
 
             <p className="text-foreground/70 text-sm mb-4 leading-relaxed text-left">

@@ -19,12 +19,14 @@ export const Hero = () => {
                 <img
                     src="assets/bg-hero-overlay.webp"
                     alt=""
+                    loading="lazy"
                     className="hidden md:block w-full h-full object-cover mix-blend-overlay opacity-10"
                 />
                 {/* Mobile Overlay */}
                 <img
                     src="assets/bg-hero-overlay-mobile.webp"
                     alt=""
+                    loading="lazy"
                     className="block md:hidden w-full h-full object-cover mix-blend-overlay opacity-[0.07]"
                 />
             </div>
@@ -89,6 +91,8 @@ export const Hero = () => {
                     <img
                         src="assets/squeeze.webp"
                         alt="Squeeze Spec"
+                        fetchPriority="high"
+                        loading="eager"
                         className="w-full h-auto drop-shadow-[0_20px_60px_rgba(0,0,0,0.6)]"
                     />
                 </motion.div>
@@ -103,6 +107,8 @@ export const Hero = () => {
                     <img
                         src="assets/hero-mobile.webp"
                         alt="Spec Squeeze Mobile"
+                        fetchPriority="high"
+                        loading="eager"
                         className="w-full h-auto"
                     />
                 </motion.div>
