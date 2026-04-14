@@ -48,8 +48,8 @@ export const ContactForm = () => {
     const [errors, setErrors] = useState<Partial<Record<keyof FormData, boolean>>>({});
     const [showSuccess, setShowSuccess] = useState(false);
     const [showCheckboxError, setShowCheckboxError] = useState(false);
-    const [companyName, setCompanyName] = useState('');
-    const [isValidatingCnpj, setIsValidatingCnpj] = useState(false);
+    // const [companyName, setCompanyName] = useState('');
+    // const [isValidatingCnpj, setIsValidatingCnpj] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [cities, setCities] = useState<string[]>([]);
     const [showCityDropdown, setShowCityDropdown] = useState(false);
@@ -95,6 +95,7 @@ export const ContactForm = () => {
     };
 
     // CNPJ API Validation
+    /*
     const validateCnpj = async (cnpj: string) => {
         const cleanCnpj = cnpj.replace(/\D/g, '');
         if (cleanCnpj.length !== 14) return;
@@ -117,6 +118,7 @@ export const ContactForm = () => {
             setIsValidatingCnpj(false);
         }
     };
+    */
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -158,7 +160,7 @@ export const ContactForm = () => {
 
             const emailContent = `OLÁ, *SPEC SQUEEZE*
 
-${formData.nome} da ${companyName || 'Empresa'} preencheu o formulário da landing page. Confira os dados de ${formData.nome} e entre em contato o mais breve possível.
+${formData.nome} de Empresa preencheu o formulário da landing page. Confira os dados de ${formData.nome} e entre em contato o mais breve possível.
 
 Nome: ${formData.nome}
 E-mail: ${formData.email}
@@ -187,7 +189,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}
                     body: JSON.stringify({
                         access_key: activeKey,
                         from_name: "Spec Squeeze Leads",
-                        subject: `Novo Orçamento: ${formData.nome} (${companyName || 'B2B'})`,
+                        subject: `Novo Orçamento: ${formData.nome} (B2B)`,
                         to: destinationEmail,
                         message: emailContent,
                         ...Object.fromEntries(
@@ -195,14 +197,14 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}
                                 key === 'email' ? ['lead_email', val] : [key, val]
                             )
                         ),
-                        empresa: companyName
+                        // empresa: companyName
                     })
                 });
 
                 if (response.ok) {
                     setShowSuccess(true);
                     // setFormData(initialData); // Removido para manter os dados no formulário
-                    setCompanyName(companyName); // Mantém o nome da empresa visível
+                    // setCompanyName(companyName); // Mantém o nome da empresa visível
                     setTimeout(() => setShowSuccess(false), 5000);
                 } else {
                     alert("Erro no envio. Verifique as configurações do formulário.");
@@ -222,12 +224,14 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}
         // CNPJ restriction (14 chars)
         if (name === 'cnpj') {
             finalValue = value.replace(/\D/g, '').slice(0, 14);
+            /*
             if (finalValue.length === 14) {
                 validateCnpj(finalValue);
             } else {
                 setCompanyName('');
                 setErrors(prev => ({ ...prev, cnpj: false }));
             }
+            */
         }
 
         setFormData(prev => ({ ...prev, [name]: finalValue }));
