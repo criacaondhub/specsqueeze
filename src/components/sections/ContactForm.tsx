@@ -125,7 +125,12 @@ export const ContactForm = () => {
         let hasErrors = false;
 
         (Object.keys(formData) as Array<keyof FormData>).forEach(key => {
-            if (key !== 'observacoes' && key !== 'confirmacao') {
+            // Ignora campos comentados/opcionais na validação
+            const skipValidation = [
+                'observacoes', 'confirmacao', 'atuacao', 'prazo', 'cnpj'
+            ].includes(key);
+
+            if (!skipValidation) {
                 if (validateField(key, formData[key])) {
                     newErrors[key] = true;
                     hasErrors = true;
@@ -133,10 +138,13 @@ export const ContactForm = () => {
             }
         });
 
+        // Validação de CNPJ comentada
+        /*
         if (errors.cnpj || companyName === 'CNPJ Inválido') {
             newErrors.cnpj = true;
             hasErrors = true;
         }
+        */
 
         if (!formData.confirmacao) {
             setShowCheckboxError(true);
@@ -158,9 +166,13 @@ Whatsapp: ${formData.whatsapp}
 Localização: ${formData.cidadeUf}
 Quantidade Desejada: ${formData.quantidade}
 Linha/Modelo: ${formData.modelo}
-Prazo Ideal: ${formData.prazo}
 Personalização: ${formData.personalizacao}
-Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
+/* Campos desativados:
+CNPJ: ${formData.cnpj}
+Área: ${formData.atuacao}
+Prazo: ${formData.prazo}
+Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}
+*/`;
 
             try {
                 const activeKey = import.meta.env.VITE_WEB3FORMS_KEY;
@@ -309,6 +321,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                 </div>
 
                                 {/* 4. CNPJ */}
+                                {/* 
                                 <div className="space-y-2">
                                     <div className="flex justify-between items-center">
                                         <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">CNPJ da Empresa</label>
@@ -330,8 +343,10 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                         onChange={(e) => handleChange('cnpj', e.target.value)}
                                     />
                                 </div>
+                                */}
 
                                 {/* 5. Área de Atuação */}
+                                {/* 
                                 <div className="space-y-2">
                                     <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Área de Atuação</label>
                                     <input
@@ -342,6 +357,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                         onChange={(e) => handleChange('atuacao', e.target.value)}
                                     />
                                 </div>
+                                */}
 
                                 {/* 6. Cidade / UF Custom Dropdown */}
                                 <div className="space-y-2 relative">
@@ -432,6 +448,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                 </div>
 
                                 {/* 9. Prazo */}
+                                {/* 
                                 <div className="space-y-2 relative">
                                     <label htmlFor="prazo" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Prazo Ideal</label>
                                     <div className="relative group">
@@ -452,6 +469,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                         </div>
                                     </div>
                                 </div>
+                                */}
 
                                 {/* 10. Personalização */}
                                 <div className="space-y-2 relative">
@@ -475,6 +493,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                 </div>
 
                                 {/* 11. Custom Field (Full Width) */}
+                                {/* 
                                 <div className="space-y-2 md:col-span-2">
                                     <label className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Observações (Opcional)</label>
                                     <textarea
@@ -485,6 +504,7 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}`;
                                         onChange={(e) => handleChange('observacoes', e.target.value)}
                                     />
                                 </div>
+                                */}
 
                                 {/* CHECKBOX & ERROR */}
                                 <div className="md:col-span-2 space-y-4">
