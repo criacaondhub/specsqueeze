@@ -17,10 +17,7 @@ interface FormData {
     cnpj: string;
     atuacao: string;
     cidadeUf: string;
-    quantidade: string;
-    modelo: string;
     prazo: string;
-    personalizacao: string;
     observacoes: string;
     confirmacao: boolean;
 }
@@ -32,10 +29,7 @@ const initialData: FormData = {
     cnpj: '',
     atuacao: '',
     cidadeUf: '',
-    quantidade: '',
-    modelo: '',
     prazo: '',
-    personalizacao: '',
     observacoes: '',
     confirmacao: false,
 };
@@ -165,16 +159,7 @@ ${formData.nome} de Empresa preencheu o formulário da landing page. Confira os 
 Nome: ${formData.nome}
 E-mail: ${formData.email}
 Whatsapp: ${formData.whatsapp}
-Localização: ${formData.cidadeUf}
-Quantidade Desejada: ${formData.quantidade}
-Linha/Modelo: ${formData.modelo}
-Personalização: ${formData.personalizacao}
-/* Campos desativados:
-CNPJ: ${formData.cnpj}
-Área: ${formData.atuacao}
-Prazo: ${formData.prazo}
-Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}
-*/`;
+Localização: ${formData.cidadeUf}`;
 
             try {
                 const activeKey = import.meta.env.VITE_WEB3FORMS_KEY;
@@ -202,9 +187,21 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}
                 });
 
                 if (response.ok) {
+                    // Envia também para o Google Sheets (fire-and-forget)
+                    const sheetsUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
+                    if (sheetsUrl) {
+                        fetch(sheetsUrl, {
+                            method: "POST",
+                            body: JSON.stringify({
+                                nome: formData.nome,
+                                email: formData.email,
+                                whatsapp: formData.whatsapp,
+                                cidadeUf: formData.cidadeUf,
+                            }),
+                        }).catch(() => {});
+                    }
+
                     setShowSuccess(true);
-                    // setFormData(initialData); // Removido para manter os dados no formulário
-                    // setCompanyName(companyName); // Mantém o nome da empresa visível
                     setTimeout(() => setShowSuccess(false), 5000);
                 } else {
                     alert("Erro no envio. Verifique as configurações do formulário.");
@@ -407,94 +404,6 @@ Observações: ${formData.observacoes.trim() || 'NÃO PREENCHEU'}
                                     </div>
                                 </div>
 
-                                {/* 7. Quantidade */}
-                                <div className="space-y-2 relative">
-                                    <label htmlFor="quantidade" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Quantidade Desejada</label>
-                                    <div className="relative group">
-                                        <select
-                                            id="quantidade"
-                                            className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.quantidade && "border-red-500/50 bg-red-500/5")}
-                                            value={formData.quantidade}
-                                            onChange={(e) => handleChange('quantidade', e.target.value)}
-                                        >
-                                            <option value="" disabled className="bg-slate-900">Selecione...</option>
-                                            <option value="300-499" className="bg-slate-900">300 a 499</option>
-                                            <option value="500-999" className="bg-slate-900">500 a 999</option>
-                                            <option value="1000-2999" className="bg-slate-900">1.000 a 2.999</option>
-                                            <option value="+3000" className="bg-slate-900">+3.000</option>
-                                        </select>
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-foreground/30 group-hover:text-primary-accent transition-colors flex items-center">
-                                            <i className="fi fi-rr-angle-small-down text-xl leading-none"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* 8. Modelo */}
-                                <div className="space-y-2 relative">
-                                    <label htmlFor="modelo" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Linha / Modelo</label>
-                                    <div className="relative group">
-                                        <select
-                                            id="modelo"
-                                            className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.modelo && "border-red-500/50 bg-red-500/5")}
-                                            value={formData.modelo}
-                                            onChange={(e) => handleChange('modelo', e.target.value)}
-                                        >
-                                            <option value="" disabled className="bg-slate-900">Selecione...</option>
-                                            <option value="automatica" className="bg-slate-900">Automática</option>
-                                            <option value="promocional" className="bg-slate-900">Promocional</option>
-                                            <option value="pro" className="bg-slate-900">Pro</option>
-                                            <option value="nessei" className="bg-slate-900">Ainda não sei (quero recomendação)</option>
-                                        </select>
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-foreground/30 group-hover:text-primary-accent transition-colors flex items-center">
-                                            <i className="fi fi-rr-angle-small-down text-xl leading-none"></i>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* 9. Prazo */}
-                                {/* 
-                                <div className="space-y-2 relative">
-                                    <label htmlFor="prazo" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Prazo Ideal</label>
-                                    <div className="relative group">
-                                        <select
-                                            id="prazo"
-                                            className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.prazo && "border-red-500/50 bg-red-500/5")}
-                                            value={formData.prazo}
-                                            onChange={(e) => handleChange('prazo', e.target.value)}
-                                        >
-                                            <option value="" disabled className="bg-slate-900">Selecione...</option>
-                                            <option value="15" className="bg-slate-900">Até 15 dias</option>
-                                            <option value="30" className="bg-slate-900">15 a 30 dias</option>
-                                            <option value="45" className="bg-slate-900">30 a 45 dias</option>
-                                            <option value="flexivel" className="bg-slate-900">Flexível</option>
-                                        </select>
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-foreground/30 group-hover:text-primary-accent transition-colors flex items-center">
-                                            <i className="fi fi-rr-angle-small-down text-xl leading-none"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                                */}
-
-                                {/* 10. Personalização */}
-                                <div className="space-y-2 relative">
-                                    <label htmlFor="personalizacao" className="text-xs font-bold uppercase tracking-wider text-foreground/50 ml-1">Personalização</label>
-                                    <div className="relative group">
-                                        <select
-                                            id="personalizacao"
-                                            className={cn("w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground appearance-none focus:outline-none focus:border-primary-accent transition-colors cursor-pointer", errors.personalizacao && "border-red-500/50 bg-red-500/5")}
-                                            value={formData.personalizacao}
-                                            onChange={(e) => handleChange('personalizacao', e.target.value)}
-                                        >
-                                            <option value="" disabled className="bg-slate-900">Selecione...</option>
-                                            <option value="1cor" className="bg-slate-900">1 cor</option>
-                                            <option value="colorida" className="bg-slate-900">Colorida</option>
-                                            <option value="nessei" className="bg-slate-900">Ainda não sei</option>
-                                        </select>
-                                        <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-foreground/30 group-hover:text-primary-accent transition-colors flex items-center">
-                                            <i className="fi fi-rr-angle-small-down text-xl leading-none"></i>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 {/* 11. Custom Field (Full Width) */}
                                 {/* 
