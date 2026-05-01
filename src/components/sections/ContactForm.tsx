@@ -165,7 +165,8 @@ Localização: ${formData.cidadeUf}`;
                 const activeKey = import.meta.env.VITE_WEB3FORMS_KEY;
                 const destinationEmail = "contato@squeeze.com.br";
 
-                const response = await fetch("https://api.web3forms.com/submit", {
+                // Dispara ambas as chamadas em paralelo sem bloquear o feedback
+                fetch("https://api.web3forms.com/submit", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -182,33 +183,26 @@ Localização: ${formData.cidadeUf}`;
                                 key === 'email' ? ['lead_email', val] : [key, val]
                             )
                         ),
-                        // empresa: companyName
                     })
-                });
+                }).catch(() => {});
 
-                if (response.ok) {
-                    // Envia também para o Google Sheets (fire-and-forget)
-                    const sheetsUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
-                    if (sheetsUrl) {
-                        fetch(sheetsUrl, {
-                            method: "POST",
-                            body: JSON.stringify({
-                                nome: formData.nome,
-                                email: formData.email,
-                                whatsapp: formData.whatsapp,
-                                cidadeUf: formData.cidadeUf,
-                            }),
-                        }).catch(() => {});
-                    }
-
-                    setShowSuccess(true);
-                    setTimeout(() => setShowSuccess(false), 5000);
-                } else {
-                    alert("Erro no envio. Verifique as configurações do formulário.");
+                const sheetsUrl = import.meta.env.VITE_GOOGLE_SHEETS_URL;
+                if (sheetsUrl) {
+                    fetch(sheetsUrl, {
+                        method: "POST",
+                        body: JSON.stringify({
+                            nome: formData.nome,
+                            email: formData.email,
+                            whatsapp: formData.whatsapp,
+                            cidadeUf: formData.cidadeUf,
+                        }),
+                    }).catch(() => {});
                 }
+
+                setShowSuccess(true);
+                setTimeout(() => setShowSuccess(false), 5000);
             } catch (error) {
                 console.error("Erro no envio:", error);
-                alert("Erro de conexão ao enviar orçamento.");
             } finally {
                 setIsSubmitting(false);
             }
