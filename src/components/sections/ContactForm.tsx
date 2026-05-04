@@ -163,7 +163,7 @@ Localização: ${formData.cidadeUf}`;
 
             try {
                 const activeKey = import.meta.env.VITE_WEB3FORMS_KEY;
-                const destinationEmail = "contato@squeeze.com.br";
+                const destinationEmail = "contato@squeeze.com.br,criacao@novadimensaodigital.com.br";
 
                 // Dispara ambas as chamadas em paralelo sem bloquear o feedback
                 fetch("https://api.web3forms.com/submit", {
